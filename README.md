@@ -18,3 +18,5 @@ Collect ECS metrics automatically from CloudWatch using the Amazon ECS Datadog i
 ### ECS on Fargate
 
 AWS Faragte is a technology that you can use with Amazon ECS to run <a href="https://aws.amazon.com/containers/">containers</a> without having to manage **servers or clusters** of Amazon EC2 instances. With AWS Fargate, you no longer have to provision, configure, or scale clusters of virtual machines to run containers. This removes the need to choose server types, decide when to scale your cluters, or optimize cluster packing.
+
+<p align="center"><img src="https://user-images.githubusercontent.com/86287920/191633137-32d5719a-cac6-4c4d-9c30-f7cd411b485d.jpeg" width="800" /></p>
