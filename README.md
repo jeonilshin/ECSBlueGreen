@@ -87,12 +87,12 @@ phases:
 artifacts:
   files:
     - 'image*.json'
-    - 'appspec.yaml'
+    - 'appspec.yml'
     - 'taskdef.json'
   secondary-artifacts:
     DefinitionArtifact:
       files:
-        - appspec.yaml
+        - appspec.yml
         - taskdef.json
     ImageArtifact:
       files:
