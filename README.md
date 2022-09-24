@@ -110,3 +110,12 @@ Resources:
           ContainerName: "이름"
           ContainerPort: 포트번호
 ```
+## imagedefinitions.json
+```
+[
+    {
+      "name": "national-wsi-infra-master-app",
+      "imageUri": "635272395604.dkr.ecr.ap-northeast-2.amazonaws.com/national-wsi-infra-ecr-repo:master"
+    }
+]
+```
