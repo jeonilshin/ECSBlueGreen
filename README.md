@@ -66,11 +66,9 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - echo $AWS_DEFAULT_REGION
-      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
-      - REPOSITORY_URI=<<your-account-id>>.dkr.ecr.eu-central-1.amazonaws.com/ecr-simplehttp
-      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin <your-account-id>>.dkr.ecr.ap-northeast-2.amazonaws.com
+      - REPOSITORY_URI=<<your-account-id>>.dkr.ecr.eu-central-1.amazonaws.com/<<your-ecr>>
+      - IMAGE_TAG=$(date "+%Y-%m-%d.%H.%M.%S")
   build:
     commands:
       - echo Build started on `date`
@@ -80,9 +78,11 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker push $REPOSITORY_URI:latest
+      - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo Writing image definition file...
       - printf '{"ImageURI":"%s"}' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
+      - printf '[{"name":"<task-container-name>","imageUri":"%s"}]' $RESPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
   files:
     - 'image*.json'
