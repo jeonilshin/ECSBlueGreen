@@ -81,7 +81,7 @@ phases:
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definition file...
-      - jq .containerDefinitions[].image=\"$REPOSITORY_URI:$IMAGE_TAG\" taskdef.json > taskdef.json
+      - echo "$(jq .containerDefinitions[].image=\"$REPOSITORY_URI:$IMAGE_TAG\" taskdef.json)" > taskdef.json
 artifacts:
   files:
     - 'appspec.yml'
