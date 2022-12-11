@@ -81,21 +81,11 @@ phases:
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definition file...
-      - printf '{"ImageURI":"%s"}' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
-      - printf '[{"name":"<task-container-name>","imageUri":"%s"}]' $RESPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - jq .containerDefinitions[].image=\"$REPOSITORY_URI:$IMAGE_TAG\" taskdef.json > taskdef.json
 artifacts:
   files:
-    - 'image*.json'
     - 'appspec.yml'
     - 'taskdef.json'
-  secondary-artifacts:
-    DefinitionArtifact:
-      files:
-        - appspec.yml
-        - taskdef.json
-    ImageArtifact:
-      files:
-        - imageDetail.json
 ```
 ## appspec.yml file
 ```
