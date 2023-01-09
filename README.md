@@ -71,8 +71,8 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin <your-account-id>>.dkr.ecr.ap-northeast-2.amazonaws.com
-      - REPOSITORY_URI=<<your-account-id>>.dkr.ecr.eu-central-1.amazonaws.com/<<your-ecr>>
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin <<your-account-id>>.dkr.ecr.ap-northeast-2.amazonaws.com
+      - REPOSITORY_URI=<<your-account-id>>.dkr.ecr.ap-northeast-2.amazonaws.com/<<your-ecr>>
       - IMAGE_TAG=$(date "+%Y-%m-%d.%H.%M.%S")
   build:
     commands:
